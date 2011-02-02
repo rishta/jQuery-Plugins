@@ -59,9 +59,9 @@ $.fn.numeric.keypress = function(e)
 	if(key < 48 || key > 57)
 	{
 		/* '-' only allowed at start */
-		if(key == 45 && this.value.length == 0) return true;
+		if(key == 45 && $(this)[0].selectionStart == 0) return true;
 		/* only one decimal separator allowed */
-		if(decimal && key == decimal.charCodeAt(0) && this.value.indexOf(decimal) != -1)
+		if(decimal && decimal.indexOf(String.fromCharCode(key)) > -1 && this.value.match(new RegExp('['+decimal+']')))
 		{
 			allow = false;
 		}
